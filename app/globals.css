@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm parchment palette - light mode */
+  --color-parchment: #faf7f2;
+  --color-parchment-50: #fdfbf7;
+  --color-parchment-100: #f5f0e6;
+  --color-parchment-200: #ebe3d1;
+  --color-parchment-300: #d9ccb0;
+
+  /* Deep emerald - primary accent (mihrab green) */
+  --color-emerald-ink: #1a5f4a;
+  --color-emerald-deep: #134433;
+  --color-emerald-soft: #2a8066;
+  --color-emerald-mist: #e6f0ec;
+
+  /* Muted gold - highlights */
+  --color-gold: #c9a961;
+  --color-gold-soft: #e0c98a;
+  --color-gold-deep: #a08340;
+
+  /* Ink text tones */
+  --color-ink: #2a2a2a;
+  --color-ink-soft: #4a4a4a;
+  --color-ink-muted: #7a7268;
+
+  /* Dark mode warm charcoal */
+  --color-night: #1a1814;
+  --color-night-soft: #262322;
+  --color-night-card: #2d2926;
+  --color-cream: #e8e3d8;
+  --color-cream-soft: #c9c3b5;
+  --color-sage: #7ca691;
+
+  --font-serif: var(--font-lora), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-amiri: var(--font-amiri), "Traditional Arabic", serif;
+  --font-naskh: var(--font-naskh), "Traditional Arabic", serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  font-feature-settings: "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+}
+
+html.dark body {
+  background: var(--color-night);
+  color: var(--color-cream);
+}
+
+/* Subtle paper-like grain for depth */
+.paper-grain {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(201, 169, 97, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(26, 95, 74, 0.02) 0%, transparent 50%);
+}
+
+html.dark .paper-grain {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(201, 169, 97, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(124, 166, 145, 0.03) 0%, transparent 50%);
+}
+
+/* Arabic text always flows right-to-left with larger line-height */
+.arabic {
+  direction: rtl;
+  text-align: right;
+  line-height: 2.2;
+  letter-spacing: 0;
+  font-feature-settings: "kern", "liga";
+}
+
+/* Ornamental ayah-end marker */
+.ayah-marker {
+  color: var(--color-gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.25rem;
+  font-size: 0.75em;
+  vertical-align: middle;
+}
+
+/* Slim scrollbar for the calm aesthetic */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 204, 176, 0.5) transparent;
+}
+
+html.dark * {
+  scrollbar-color: rgba(45, 41, 38, 0.7) transparent;
+}
+
+/* Gentle fade for page transitions */
+@keyframes soft-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: soft-fade 0.4s ease-out;
+}
+
+@keyframes gentle-slide {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-in-right {
+  animation: gentle-slide 0.3s ease-out;
+}
+
+/* Reverent selection */
+::selection {
+  background: rgba(26, 95, 74, 0.15);
+  color: var(--color-emerald-deep);
+}
+
+html.dark ::selection {
+  background: rgba(124, 166, 145, 0.25);
+  color: var(--color-cream);
+}
