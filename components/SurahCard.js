@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useSettings } from "@/context/SettingsContext";
+import { nameToSlug } from "@/lib/slugs";
 
 export default function SurahCard({ surah }) {
   const { settings } = useSettings();
@@ -11,7 +12,7 @@ export default function SurahCard({ surah }) {
   }[settings.arabicFont] || "var(--font-scheherazade)";
   return (
     <Link
-      href={`/surah/${surah.number}`}
+      href={`/surah/${nameToSlug(surah.nameEnglish)}`}
       className="group block h-full p-4 sm:p-5 rounded-2xl bg-parchment-50 dark:bg-night-card border border-parchment-200/50 dark:border-night-card hover:border-emerald-soft/40 dark:hover:border-sage/40 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
     >
       <div className="flex items-start justify-between gap-3">

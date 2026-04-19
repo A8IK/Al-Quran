@@ -3,7 +3,8 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSettings } from "@/context/SettingsContext";
-import { searchAyahs } from "@/lib/quran";
+import { searchAyahs } from "@/lib/api";
+import { nameToSlug } from "@/lib/slugs";
 import SurahCard from "./SurahCard";
 
 function SearchIcon(props) {
@@ -130,7 +131,7 @@ export default function HomeClient({ surahs }) {
               {ayahResults.map((r) => (
                 <li key={`${r.surahNumber}:${r.ayahNumber}`}>
                   <Link
-                    href={`/surah/${r.surahNumber}#ayah-${r.ayahNumber}`}
+                    href={`/surah/${nameToSlug(r.surahNameEnglish)}#ayah-${r.ayahNumber}`}
                     className="block p-4 sm:p-5 rounded-xl bg-parchment-50 dark:bg-night-card hover:bg-parchment-100 dark:hover:bg-night-soft border border-parchment-200/60 dark:border-night-card hover:border-emerald-soft/30 dark:hover:border-sage/30 transition-all group"
                   >
                     <div className="flex items-baseline justify-between mb-2">

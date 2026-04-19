@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useSettings } from "@/context/SettingsContext";
+import { nameToSlug } from "@/lib/slugs";
+import surahs from "@/data/surahs.json";
 import AyahCard from "./AyahCard";
 
 function ArrowLeft(props) {
@@ -131,7 +133,7 @@ export default function SurahView({ surah, prev, next }) {
       <nav className="mt-12 grid grid-cols-2 gap-3 sm:gap-4">
         {prev ? (
           <Link
-            href={`/surah/${prev.number}`}
+            href={`/surah/${nameToSlug(prev.nameEnglish)}`}
             className="group p-4 rounded-xl bg-parchment-50 dark:bg-night-card hover:bg-parchment-100 dark:hover:bg-night-soft border border-parchment-200/60 dark:border-night-card hover:border-emerald-soft/30 dark:hover:border-sage/30 transition-all"
           >
             <div className="flex items-center gap-2 text-xs font-sans text-ink-muted dark:text-cream-soft/60 mb-1">
@@ -147,7 +149,7 @@ export default function SurahView({ surah, prev, next }) {
         )}
         {next ? (
           <Link
-            href={`/surah/${next.number}`}
+            href={`/surah/${nameToSlug(next.nameEnglish)}`}
             className="group p-4 rounded-xl bg-parchment-50 dark:bg-night-card hover:bg-parchment-100 dark:hover:bg-night-soft border border-parchment-200/60 dark:border-night-card hover:border-emerald-soft/30 dark:hover:border-sage/30 transition-all text-right"
           >
             <div className="flex items-center justify-end gap-2 text-xs font-sans text-ink-muted dark:text-cream-soft/60 mb-1">

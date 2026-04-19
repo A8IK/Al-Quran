@@ -7,6 +7,7 @@ import { useSettings } from "@/context/SettingsContext";
 import surahs from "@/data/surahs.json";
 import quranData from "@/data/quran.json";
 import { searchAyahs } from "@/lib/quran";
+import { nameToSlug } from "@/lib/slugs";
 
 function CloseIcon(props) {
   return (
@@ -286,7 +287,7 @@ export default function Sidebar({ open, onClose }) {
                   <button
                     key={s.number}
                     onClick={() => {
-                      router.push(`/surah/${s.number}`);
+                      router.push(`/surah/${nameToSlug(s.nameEnglish)}`);
                       onClose?.();
                     }}
                     className={`w-full text-left px-4 py-3 transition-colors text-sm ${
@@ -351,7 +352,7 @@ export default function Sidebar({ open, onClose }) {
                     {filteredVerses.map((ayah) => (
                       <Link
                         key={ayah.number}
-                        href={`/surah/${selectedSurahData.number}#ayah-${ayah.number}`}
+                        href={`/surah/${nameToSlug(selectedSurahData.nameEnglish)}#ayah-${ayah.number}`}
                         onClick={onClose}
                         className="block px-4 py-3 transition-colors hover:bg-parchment-100 dark:hover:bg-night-card text-sm border-l-4 border-transparent hover:border-emerald-soft dark:hover:border-sage"
                       >
@@ -418,7 +419,7 @@ export default function Sidebar({ open, onClose }) {
                     {getVersesForJuz.map((ayah) => (
                       <Link
                         key={`${ayah.surahNumber}-${ayah.number}`}
-                        href={`/surah/${ayah.surahNumber}#ayah-${ayah.number}`}
+                        href={`/surah/${nameToSlug(ayah.surahName)}#ayah-${ayah.number}`}
                         onClick={onClose}
                         className="block px-4 py-3 transition-colors hover:bg-parchment-100 dark:hover:bg-night-card text-sm border-l-4 border-transparent hover:border-emerald-soft dark:hover:border-sage"
                       >

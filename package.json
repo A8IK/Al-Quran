@@ -4,8 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "server": "cd server && npm run dev",
+    "client": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "dev:all": "concurrently \"npm run server\" \"npm run client\"",
+    "install:all": "npm install && cd server && npm install && cd .."
   },
   "dependencies": {
     "next": "16.2.4",
@@ -14,6 +18,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "concurrently": "^8.2.2",
     "tailwindcss": "^4"
   }
 }
