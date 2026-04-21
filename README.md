@@ -1,5 +1,5 @@
 This is a [Next.js](https://nextjs.org) Quran Reader application with an Express.js backend API.
-
+Live Link: https://harmonious-concha-3ea353.netlify.app/
 ## Tech Stack
 
 - **Frontend**: Next.js 16.2.4 with React 19
